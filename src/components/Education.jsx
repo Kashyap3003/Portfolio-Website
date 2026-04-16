@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { HiAcademicCap } from 'react-icons/hi';
+import { HiAcademicCap, HiExternalLink } from 'react-icons/hi';
 import { education, achievements } from '../data/resumeData';
 import SectionTitle from './SectionTitle';
 
@@ -43,7 +43,7 @@ const Education = () => (
 
         {/* Achievements */}
         <div className="space-y-4">
-          {achievements.map(({ icon, title, detail }, i) => (
+          {achievements.map(({ icon, title, detail, link }, i) => (
             <motion.div
               key={title}
               initial={{ opacity: 0, x: 20 }}
@@ -54,10 +54,22 @@ const Education = () => (
                          hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-colors"
             >
               <span className="text-2xl">{icon}</span>
-              <div>
+              <div className="flex-1 min-w-0">
                 <p className="font-semibold text-gray-900 dark:text-white text-sm">{title}</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{detail}</p>
               </div>
+              {link && (
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View certificate"
+                  className="shrink-0 text-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-300
+                             transition-colors hover:scale-110 transform duration-200"
+                >
+                  <HiExternalLink size={18} />
+                </a>
+              )}
             </motion.div>
           ))}
         </div>

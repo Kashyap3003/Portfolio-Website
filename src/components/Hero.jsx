@@ -199,8 +199,26 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right: Terminal window */}
-          <div className="flex justify-center lg:justify-end">
+          {/* Right: Photo + Terminal window */}
+          <div className="flex flex-col items-center lg:items-end gap-6">
+            {/* Avatar */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative"
+            >
+              <div className="w-28 h-28 rounded-2xl overflow-hidden ring-2 ring-indigo-500/40 shadow-xl shadow-indigo-500/20">
+                <img
+                  src={personal.avatar}
+                  alt="Kashyap Ajudiya"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Online indicator */}
+              <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-white dark:border-gray-950 shadow" />
+            </motion.div>
+
             <TerminalWindow />
           </div>
         </div>

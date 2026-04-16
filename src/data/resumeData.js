@@ -8,7 +8,8 @@ export const personal = {
   github: 'https://github.com/kashyapajudiya',       // update with real URL
   linkedin: 'https://linkedin.com/in/kashyap-ajudiya', // update with real URL
   location: 'Gujarat, India',
-  resumeFile: '/resume.pdf', // place your PDF in the /public folder
+  resumeFile: '/Kashyap_CV.pdf',
+  avatar: '/avatar.jpg',
 };
 
 // ─── About ────────────────────────────────────────────────────────────────────
@@ -148,6 +149,7 @@ export const achievements = [
     icon: '🏆',
     title: 'Microsoft Certified: Azure Fundamentals',
     detail: 'AZ-900 – April 2025',
+    link: 'https://learn.microsoft.com/api/credentials/share/en-us/KashyapAjudiya-5660/C4420F306DF85161?sharingId=CC9713057CE18951',
   },
   {
     icon: '🥇',
