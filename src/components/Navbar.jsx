@@ -66,8 +66,8 @@ const Navbar = () => {
             K
           </span>
           <span className="font-bold text-gray-900 dark:text-white ml-1 text-sm hidden sm:block">
-            Kashyap<span className="text-indigo-500">.</span>
-          </span>
+			Kashyap Ajudiya<span className="text-indigo-500"></span>
+		  </span>
         </button>
 
         {/* Desktop links */}
