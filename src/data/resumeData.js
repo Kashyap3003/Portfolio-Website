@@ -5,8 +5,8 @@ export const personal = {
   tagline: 'Building event-driven backend systems that scale with .NET Core & Azure',
   email: 'kashyapajudiya11@gmail.com',
   phone: '+91 7383567059',
-  github: 'https://github.com/kashyapajudiya',       // update with real URL
-  linkedin: 'https://linkedin.com/in/kashyap-ajudiya', // update with real URL
+  github: 'https://github.com/Kashyap3003',       // update with real URL
+  linkedin: 'https://www.linkedin.com/in/kashyapajudiya/', // update with real URL
   location: 'Gujarat, India',
   resumeFile: '/Kashyap_CV.pdf',
   avatar: '/avatar.jpg',
