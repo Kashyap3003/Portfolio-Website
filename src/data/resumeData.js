@@ -14,10 +14,9 @@ export const personal = {
 
 // ─── About ────────────────────────────────────────────────────────────────────
 export const aboutText =
-  "I'm a Software Engineer with hands-on experience engineering scalable backend systems for the healthcare industry. " +
-  'I specialize in event-driven architectures, REST APIs, and cloud infrastructure on Azure — currently processing ' +
-  '500+ healthcare data events per day across 15+ Practice Management Systems. ' +
-  'I care about clean code, SOLID principles, and shipping solutions that deliver measurable engineering impact.';
+  'Software Engineer specializing in building scalable, event-driven backend systems with .NET Core and Azure. ' +
+  'I architect distributed cloud solutions, design clean REST APIs, and deliver production-grade systems that are built to last ' +
+  '— guided by SOLID principles and a relentless focus on code quality.';
 
 export const stats = [
   { value: '500+', label: 'Events / Day Processed' },
@@ -40,7 +39,7 @@ export const skillGroups = [
     colorClass: 'text-sky-600 dark:text-sky-400',
     bgClass: 'bg-sky-50 dark:bg-sky-500/10',
     borderClass: 'border-sky-200 dark:border-sky-500/20',
-    items: ['Microsoft Azure', 'Azure Service Bus', 'Azure Functions', 'GCP (Basic)', 'Datadog'],
+    items: ['Microsoft Azure', 'Azure Service Bus', 'Azure Functions', 'GCP (Basic)'],
   },
   {
     category: 'Languages',
@@ -61,7 +60,7 @@ export const skillGroups = [
     colorClass: 'text-orange-600 dark:text-orange-400',
     bgClass: 'bg-orange-50 dark:bg-orange-500/10',
     borderClass: 'border-orange-200 dark:border-orange-500/20',
-    items: ['GitLab', 'SonarQube', 'xUnit', 'NSubstitute', 'ClickUp', 'Cursor IDE'],
+    items: ['GitLab', 'SonarQube', 'Datadog', 'ClickUp', 'Cursor IDE'],
   },
   {
     category: 'Concepts',

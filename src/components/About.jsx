@@ -69,7 +69,7 @@ const About = () => (
           {aboutText}
         </p>
         <div className="flex flex-wrap justify-center gap-3">
-          {['Event-Driven Architecture', 'Azure Cloud', '.NET Core', 'Healthcare Tech'].map((tag) => (
+          {['Event-Driven Architecture', 'Azure Cloud', '.NET Core', 'SOLID Principles', 'REST APIs'].map((tag) => (
             <span
               key={tag}
               className="px-3 py-1 bg-indigo-50 dark:bg-indigo-500/15 text-indigo-700 dark:text-indigo-300
