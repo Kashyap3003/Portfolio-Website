@@ -97,7 +97,7 @@ export const projects = [
     impact:
       'A fully functional community platform demonstrating full-stack capability — clean REST API design, auth flows, and a reactive frontend that keeps users engaged.',
     tech: ['MongoDB', 'Express.js', 'React', 'Node.js', 'REST APIs', 'JWT'],
-    github: 'https://github.com/kashyapajudiya/answerly',
+    github: 'https://github.com/Kashyap3003/Answerly-A_Question_Answer_Forum',
     demo: null,
     featured: true,
   },
