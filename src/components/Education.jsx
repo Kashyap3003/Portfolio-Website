@@ -43,35 +43,52 @@ const Education = () => (
 
         {/* Achievements */}
         <div className="space-y-4">
-          {achievements.map(({ icon, title, detail, link }, i) => (
-            <motion.div
-              key={title}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="glass-card px-5 py-4 flex items-center gap-4
-                         hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-colors"
-            >
-              <span className="text-2xl">{icon}</span>
-              <div className="flex-1 min-w-0">
-                <p className="font-semibold text-gray-900 dark:text-white text-sm">{title}</p>
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{detail}</p>
-              </div>
-              {link && (
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View certificate"
-                  className="shrink-0 text-indigo-500 hover:text-indigo-700 dark:hover:text-indigo-300
-                             transition-colors hover:scale-110 transform duration-200"
-                >
-                  <HiExternalLink size={18} />
-                </a>
-              )}
-            </motion.div>
-          ))}
+          {achievements.map(({ icon, title, detail, link }, i) => {
+            const cardContent = (
+              <>
+                <span className="text-2xl">{icon}</span>
+                <div className="flex-1 min-w-0">
+                  <p className="font-semibold text-gray-900 dark:text-white text-sm">{title}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{detail}</p>
+                </div>
+                {link && (
+                  <HiExternalLink
+                    size={16}
+                    className="shrink-0 text-indigo-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors"
+                  />
+                )}
+              </>
+            );
+
+            return (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+              >
+                {link ? (
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-card px-5 py-4 flex items-center gap-4 group
+                               hover:border-indigo-300 dark:hover:border-indigo-500/40
+                               hover:shadow-md hover:shadow-indigo-500/10
+                               transition-all duration-200 cursor-pointer block"
+                  >
+                    {cardContent}
+                  </a>
+                ) : (
+                  <div className="glass-card px-5 py-4 flex items-center gap-4 group
+                                  hover:border-indigo-300 dark:hover:border-indigo-500/40 transition-colors">
+                    {cardContent}
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>

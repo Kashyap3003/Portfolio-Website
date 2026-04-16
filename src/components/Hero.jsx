@@ -99,17 +99,32 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-14 items-center">
           {/* Left: Text content */}
           <div>
-            {/* Availability badge */}
+            {/* Avatar + availability row */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium
-                         bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400
-                         border border-emerald-200 dark:border-emerald-500/20 mb-6"
+              className="flex items-center gap-4 mb-6"
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Open to opportunities
+              {/* Circular avatar */}
+              <div className="relative shrink-0">
+                <div className="w-16 h-16 rounded-full overflow-hidden ring-2 ring-indigo-500/50 shadow-lg shadow-indigo-500/20">
+                  <img
+                    src={personal.avatar}
+                    alt="Kashyap Ajudiya"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white dark:border-gray-950" />
+              </div>
+
+              {/* Availability badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium
+                         bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400
+                         border border-emerald-200 dark:border-emerald-500/20">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Open to opportunities
+              </div>
             </motion.div>
 
             {/* Name */}
@@ -199,26 +214,8 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right: Photo + Terminal window */}
-          <div className="flex flex-col items-center lg:items-end gap-6">
-            {/* Avatar */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="relative"
-            >
-              <div className="w-28 h-28 rounded-2xl overflow-hidden ring-2 ring-indigo-500/40 shadow-xl shadow-indigo-500/20">
-                <img
-                  src={personal.avatar}
-                  alt="Kashyap Ajudiya"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Online indicator */}
-              <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-white dark:border-gray-950 shadow" />
-            </motion.div>
-
+          {/* Right: Terminal window */}
+          <div className="flex justify-center lg:justify-end">
             <TerminalWindow />
           </div>
         </div>
