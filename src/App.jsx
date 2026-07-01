@@ -1,4 +1,5 @@
 import { MotionConfig } from 'framer-motion';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
@@ -39,6 +40,7 @@ const App = () => (
 
         <Footer />
       </div>
+      <SpeedInsights />
     </MotionConfig>
   </ThemeProvider>
 );
