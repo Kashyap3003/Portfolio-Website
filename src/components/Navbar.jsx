@@ -18,17 +18,15 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
-  // Add glass effect when page is scrolled
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Track which section is currently in view
   useEffect(() => {
-    const sectionIds = NAV_LINKS.map((l) => l.href.slice(1));
-    const observers = sectionIds.map((id) => {
+    const ids = NAV_LINKS.map((l) => l.href.slice(1));
+    const observers = ids.map((id) => {
       const el = document.getElementById(id);
       if (!el) return null;
       const obs = new IntersectionObserver(
@@ -43,77 +41,103 @@ const Navbar = () => {
 
   const scrollTo = (href) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-200/60 dark:border-white/10 shadow-sm'
-          : 'bg-transparent'
-      }`}
+    <motion.header
+      initial={{ y: -90, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-x-0 top-0 z-50"
     >
-      <nav className="section-container flex items-center justify-between h-16">
-        {/* Logo */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-1 group"
-          aria-label="Back to top"
+      <div className="section-container">
+        <nav
+          className={`flex items-center justify-between transition-all duration-300 ${
+            scrolled
+              ? 'mt-3 h-14 rounded-2xl border border-hairline bg-[var(--surface)] px-3 backdrop-blur-xl sm:px-4'
+              : 'mt-0 h-16 border border-transparent px-0'
+          }`}
         >
-          <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-indigo-500/25 group-hover:scale-110 transition-transform">
-            K
-          </span>
-          <span className="font-bold text-gray-900 dark:text-white ml-1 text-sm hidden sm:block">
-			Kashyap Ajudiya<span className="text-indigo-500"></span>
-		  </span>
-        </button>
+          {/* Monogram */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="group flex items-center gap-2.5"
+            aria-label="Back to top"
+          >
+            <span
+              className="mono flex h-9 w-9 items-center justify-center rounded-lg border text-sm font-semibold transition-all duration-300 group-hover:-rotate-6"
+              style={{
+                borderColor: 'rgba(var(--accent-rgb),0.5)',
+                color: 'var(--accent)',
+                background: 'rgba(var(--accent-rgb),0.08)',
+              }}
+            >
+              KA
+            </span>
+            <span className="hidden font-display text-sm font-bold tracking-tight sm:block">
+              Kashyap Ajudiya
+            </span>
+          </button>
 
-        {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-1">
-          {NAV_LINKS.map(({ label, href }) => {
-            const isActive = activeSection === href.slice(1);
-            return (
-              <li key={label}>
-                <button
-                  onClick={() => scrollTo(href)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    isActive
-                      ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-500/15'
-                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-white/10'
-                  }`}
+          {/* Desktop links */}
+          <ul className="hidden items-center gap-1 md:flex">
+            {NAV_LINKS.map(({ label, href }) => {
+              const isActive = activeSection === href.slice(1);
+              return (
+                <li key={label}>
+                  <button
+                    onClick={() => scrollTo(href)}
+                    className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
+                      isActive ? 'text-accent' : 'text-muted hover:text-ink'
+                    }`}
+                  >
+                    {label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active-dot"
+                        className="absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full"
+                        style={{ background: 'var(--accent)' }}
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Controls */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-lg text-muted transition-all duration-200 hover:scale-110 hover:text-accent"
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={isDark ? 'sun' : 'moon'}
+                  initial={{ rotate: -90, opacity: 0, scale: 0.4 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.4 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex items-center justify-center"
                 >
-                  {label}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+                  {isDark ? <HiSun size={18} /> : <HiMoon size={18} />}
+                </motion.span>
+              </AnimatePresence>
+            </button>
 
-        {/* Right controls */}
-        <div className="flex items-center gap-2">
-          {/* Theme toggle */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="w-9 h-9 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400
-                       hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 hover:scale-110"
-          >
-            {isDark ? <HiSun size={18} /> : <HiMoon size={18} />}
-          </button>
-
-          {/* Mobile menu toggle */}
-          <button
-            onClick={() => setMobileOpen((p) => !p)}
-            aria-label="Toggle mobile menu"
-            className="md:hidden w-9 h-9 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400
-                       hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200"
-          >
-            {mobileOpen ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
-          </button>
-        </div>
-      </nav>
+            <button
+              onClick={() => setMobileOpen((p) => !p)}
+              aria-label="Toggle menu"
+              className="flex h-9 w-9 items-center justify-center rounded-lg text-muted transition-all duration-200 hover:text-accent md:hidden"
+            >
+              {mobileOpen ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
+            </button>
+          </div>
+        </nav>
+      </div>
 
       {/* Mobile menu */}
       <AnimatePresence>
@@ -122,23 +146,36 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-white/95 dark:bg-gray-950/95 backdrop-blur-md border-b border-gray-200 dark:border-white/10 px-4 pb-4"
+            transition={{ duration: 0.22 }}
+            className="section-container mt-2 md:hidden"
           >
-            {NAV_LINKS.map(({ label, href }) => (
-              <button
-                key={label}
-                onClick={() => scrollTo(href)}
-                className="block w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-300
-                           hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
-              >
-                {label}
-              </button>
-            ))}
+            <div className="rounded-2xl border border-hairline bg-[var(--surface-solid)] p-2 shadow-xl">
+              {NAV_LINKS.map(({ label, href }, i) => (
+                <motion.button
+                  key={label}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.04 * i }}
+                  onClick={() => scrollTo(href)}
+                  className={`block w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium transition-colors ${
+                    activeSection === href.slice(1)
+                      ? 'text-accent'
+                      : 'text-muted hover:text-ink'
+                  }`}
+                  style={
+                    activeSection === href.slice(1)
+                      ? { background: 'rgba(var(--accent-rgb),0.1)' }
+                      : undefined
+                  }
+                >
+                  {label}
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 
