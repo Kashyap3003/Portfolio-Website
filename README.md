@@ -2,7 +2,7 @@
 
 A modern, recruiter-focused personal portfolio website built with **React**, **Tailwind CSS**, and **Framer Motion**.
 
-🔗 **Live Site:** _Coming soon (deploy to Vercel/Netlify)_
+🔗 **Live Site:** https://kashyapajudiya.vercel.app/
 
 ---
 
