@@ -9,7 +9,7 @@ const Marquee = ({ items, reverse = false, className = '' }) => (
       {[...items, ...items].map((item, i) => (
         <span
           key={i}
-          className="mono whitespace-nowrap rounded-lg border border-hairline px-4 py-2 text-sm text-muted"
+          className="mono whitespace-nowrap rounded-lg border border-hairline px-4 py-2 text-sm text-muted transition-colors hover:border-[rgba(var(--accent-rgb),0.35)] hover:text-accent"
         >
           {item}
         </span>

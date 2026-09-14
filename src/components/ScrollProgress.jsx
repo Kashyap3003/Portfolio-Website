@@ -1,12 +1,12 @@
 import { motion, useScroll, useSpring } from 'framer-motion';
 
-// Thin signal bar pinned to the top that fills as the page scrolls.
+// Thin gradient signal bar pinned to the top, fills as the page scrolls.
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    mass: 0.2,
+    stiffness: 130,
+    damping: 32,
+    mass: 0.18,
   });
 
   return (
@@ -14,9 +14,9 @@ const ScrollProgress = () => {
       style={{
         scaleX,
         backgroundImage:
-          'linear-gradient(90deg, var(--accent), #38bdf8, var(--spark))',
+          'linear-gradient(90deg, var(--accent), var(--accent-2), var(--spark))',
       }}
-      className="fixed inset-x-0 top-0 z-[70] h-0.5 origin-left"
+      className="fixed inset-x-0 top-0 z-[70] h-[2px] origin-left"
       aria-hidden
     />
   );
