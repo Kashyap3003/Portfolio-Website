@@ -1,37 +1,37 @@
 import { motion } from 'framer-motion';
-import { HiChip, HiCloud, HiDatabase } from 'react-icons/hi';
+import { HiCode, HiViewGrid, HiCloud } from 'react-icons/hi';
 import { aboutText, personal } from '../data/resumeData';
 import SectionTitle from './SectionTitle';
 import Tilt3D from './Tilt3D';
 
 const EXPERTISE = [
   {
-    icon: <HiChip size={24} />,
+    icon: <HiCode size={24} />,
     tint: '45,212,191',
-    title: 'Backend Engineering',
+    title: 'Full Stack Engineering',
     description:
-      'Building scalable, production-grade REST APIs and event-driven systems that handle high-throughput healthcare data across distributed environments.',
-    tags: ['.NET Core', 'C#', 'REST APIs', 'Event-Driven', 'xUnit'],
+      'Building end-to-end web applications with .NET Core, Angular, and REST APIs — from workflow UIs to production APIs, SQL Server, and Dockerized deployments.',
+    tags: ['.NET Core', 'Angular', 'REST APIs', 'SQL Server', 'Docker'],
+  },
+  {
+    icon: <HiViewGrid size={24} />,
+    tint: '56,189,248',
+    title: 'Workflow Systems',
+    description:
+      'Designing schema-driven forms, multi-tenant case management, and rule-based work queues that adapt UI and process behavior to workflow state.',
+    tags: ['Workflow Engine', 'Multi-Tenant', 'Dynamic Forms', 'Work Queues'],
   },
   {
     icon: <HiCloud size={24} />,
-    tint: '56,189,248',
-    title: 'Cloud Infrastructure',
-    description:
-      'Designing and deploying cloud-native solutions on Azure — from async messaging with Service Bus to serverless compute with Azure Functions.',
-    tags: ['Microsoft Azure', 'Azure Service Bus', 'Azure Functions', 'GCP', 'Datadog'],
-  },
-  {
-    icon: <HiDatabase size={24} />,
     tint: '190,242,100',
-    title: 'Data Engineering',
+    title: 'Cloud & Integrations',
     description:
-      'Crafting config-driven ETL pipelines with delta sync, schema mapping, retry logic, and encrypted staging — deployed across 42+ live locations.',
-    tags: ['MySQL', 'PostgreSQL', 'MongoDB', 'SQLite', 'Avro', 'ETL'],
+      'Delivering event-driven Azure systems with Service Bus and Functions, plus config-driven ETL pipelines deployed across dozens of live locations.',
+    tags: ['Microsoft Azure', 'Azure Service Bus', 'Azure Functions', 'ETL'],
   },
 ];
 
-const TAGS = ['Event-Driven Architecture', 'Azure Cloud', '.NET Core', 'SOLID Principles', 'REST APIs'];
+const TAGS = ['.NET Full Stack', 'Angular', 'Workflow Systems', 'Azure Cloud', 'REST APIs'];
 
 const container = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
 const item = {

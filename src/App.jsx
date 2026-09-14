@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { MotionConfig } from 'framer-motion';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ThemeProvider } from './context/ThemeContext';
+import Preloader from './components/Preloader';
 import Navbar from './components/Navbar';
 import ScrollProgress from './components/ScrollProgress';
 import CursorGlow from './components/CursorGlow';
@@ -14,35 +16,46 @@ import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-const App = () => (
-  <ThemeProvider>
-    <MotionConfig reducedMotion="user">
-      <div className="relative isolate min-h-screen overflow-clip">
-        {/* Atmospheric background layers */}
-        <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-mesh" />
-        <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-grid mask-radial opacity-50" />
-        <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-noise opacity-[0.035] dark:opacity-[0.055]" />
+const App = () => {
+  // App content mounts the moment the preloader curtain starts lifting, so
+  // the hero entrance choreography plays during the reveal.
+  const [booted, setBooted] = useState(false);
 
-        <CursorGlow />
-        <ScrollProgress />
-        <SideRail />
-        <Navbar />
+  return (
+    <ThemeProvider>
+      <MotionConfig reducedMotion="user">
+        <Preloader onComplete={() => setBooted(true)} />
+        <div className="relative isolate min-h-screen overflow-clip">
+          {/* Atmospheric background layers */}
+          <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-mesh" />
+          <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-grid mask-radial opacity-50" />
+          <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-noise opacity-[0.035] dark:opacity-[0.055]" />
 
-        <main className="relative z-10">
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Education />
-          <Contact />
-        </main>
+          {booted && (
+            <>
+              <CursorGlow />
+              <ScrollProgress />
+              <SideRail />
+              <Navbar />
 
-        <Footer />
-      </div>
-      <SpeedInsights />
-    </MotionConfig>
-  </ThemeProvider>
-);
+              <main className="relative z-10">
+                <Hero />
+                <About />
+                <Skills />
+                <Projects />
+                <Experience />
+                <Education />
+                <Contact />
+              </main>
+
+              <Footer />
+            </>
+          )}
+        </div>
+        <SpeedInsights />
+      </MotionConfig>
+    </ThemeProvider>
+  );
+};
 
 export default App;

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 // Additive custom cursor: a snappy dot + a lagging ring that grows over
-// interactive elements. Pointer-only; disabled on touch / reduced motion.
+// interactive elements, plus an ambient gradient blob that drifts behind the
+// content layer. Pointer-only; disabled on touch / reduced motion.
 const CursorGlow = () => {
   const [enabled, setEnabled] = useState(false);
   const [hovering, setHovering] = useState(false);
@@ -12,6 +13,9 @@ const CursorGlow = () => {
   const dotY = useMotionValue(-100);
   const ringX = useSpring(dotX, { stiffness: 320, damping: 28, mass: 0.4 });
   const ringY = useSpring(dotY, { stiffness: 320, damping: 28, mass: 0.4 });
+  // Dreamy lag for the ambient glow — trails well behind the pointer.
+  const blobX = useSpring(dotX, { stiffness: 42, damping: 18, mass: 1 });
+  const blobY = useSpring(dotY, { stiffness: 42, damping: 18, mass: 1 });
 
   useEffect(() => {
     const fine =
@@ -49,6 +53,26 @@ const CursorGlow = () => {
 
   return (
     <>
+      {/* Ambient gradient blob — sits above the fixed background layers but
+          below the content (z-10), so it washes softly through panels. Pure
+          gradient falloff (no CSS blur) keeps it cheap to composite. */}
+      <motion.div
+        style={{ x: blobX, y: blobY }}
+        className="pointer-events-none fixed left-0 top-0 z-[5]"
+        aria-hidden
+      >
+        <div
+          className={`h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full transition-[opacity,transform] duration-700 ease-out ${
+            hovering
+              ? 'scale-110 opacity-[0.14] dark:opacity-[0.2]'
+              : 'scale-100 opacity-[0.09] dark:opacity-[0.14]'
+          }`}
+          style={{
+            background:
+              'radial-gradient(circle, rgba(var(--accent-rgb),0.75), rgba(56,189,248,0.35) 45%, transparent 70%)',
+          }}
+        />
+      </motion.div>
       <motion.div
         style={{ x: ringX, y: ringY }}
         className="pointer-events-none fixed left-0 top-0 z-[9999]"

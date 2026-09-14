@@ -2,72 +2,72 @@
 export const personal = {
   name: 'Kashyap Ajudiya',
   role: 'Software Engineer',
-  tagline: 'Building event-driven backend systems that scale with .NET Core & Azure',
+  tagline: 'Building scalable .NET full-stack applications with Angular, REST APIs, and Azure',
   email: 'kashyapajudiya11@gmail.com',
   phone: '+91 7383567059',
   github: 'https://github.com/Kashyap3003',       // update with real URL
   linkedin: 'https://www.linkedin.com/in/kashyapajudiya/', // update with real URL
-  location: 'Gujarat, India',
+  location: 'Ahmedabad, Gujarat',
   resumeFile: '/Kashyap_CV.pdf',
   avatar: '/avatar.jpg',
 };
 
 // ─── About ────────────────────────────────────────────────────────────────────
 export const aboutText =
-  'Software Engineer specializing in building scalable, event-driven backend systems with .NET Core and Azure. ' +
-  'I architect distributed cloud solutions, design clean REST APIs, and deliver production-grade systems that are built to last ' +
-  '— guided by SOLID principles and a relentless focus on code quality.';
+  'Software Engineer specializing in .NET Full Stack Development, building scalable web applications using ' +
+  '.NET Core, ASP.NET Core, Angular, REST APIs, and Azure. Experienced in developing workflow-driven and ' +
+  'event-based systems with a focus on reliable, maintainable software solutions.';
 
 export const stats = [
+  { value: '20+', label: 'Isolated Tenants' },
+  { value: '40%', label: 'Workflow Effort Reduced' },
   { value: '500+', label: 'Events / Day Processed' },
-  { value: '42+', label: 'Locations Deployed' },
-  { value: '15+', label: 'PMS Integrations' },
   { value: '350+', label: 'DSA Problems Solved' },
 ];
 
 // ─── Skills ───────────────────────────────────────────────────────────────────
 export const skillGroups = [
   {
+    category: 'Frontend',
+    colorClass: 'text-violet-600 dark:text-violet-400',
+    bgClass: 'bg-violet-50 dark:bg-violet-500/10',
+    borderClass: 'border-violet-200 dark:border-violet-500/20',
+    items: ['Angular', 'JavaScript', 'HTML', 'CSS', 'REST API Integration'],
+  },
+  {
     category: 'Backend',
     colorClass: 'text-blue-600 dark:text-blue-400',
     bgClass: 'bg-blue-50 dark:bg-blue-500/10',
     borderClass: 'border-blue-200 dark:border-blue-500/20',
-    items: ['.NET Core', 'ASP.NET MVC', 'REST APIs', 'Entity Framework Core', 'Event-Driven Architecture'],
+    items: ['.NET Core', 'ASP.NET Core', 'ASP.NET MVC', 'C#', 'REST APIs', 'Entity Framework Core'],
+  },
+  {
+    category: 'Architecture',
+    colorClass: 'text-rose-600 dark:text-rose-400',
+    bgClass: 'bg-rose-50 dark:bg-rose-500/10',
+    borderClass: 'border-rose-200 dark:border-rose-500/20',
+    items: ['Full Stack Development', 'Workflow Management', 'Event-Driven Architecture', 'SOLID Principles', 'OOP'],
   },
   {
     category: 'Cloud & Infra',
     colorClass: 'text-sky-600 dark:text-sky-400',
     bgClass: 'bg-sky-50 dark:bg-sky-500/10',
     borderClass: 'border-sky-200 dark:border-sky-500/20',
-    items: ['Microsoft Azure', 'Azure Service Bus', 'Azure Functions', 'GCP (Basic)'],
-  },
-  {
-    category: 'Languages',
-    colorClass: 'text-violet-600 dark:text-violet-400',
-    bgClass: 'bg-violet-50 dark:bg-violet-500/10',
-    borderClass: 'border-violet-200 dark:border-violet-500/20',
-    items: ['C#', 'JavaScript', 'C', 'C++', 'Angular'],
+    items: ['Microsoft Azure', 'Azure Service Bus', 'Azure Functions', 'GCP (Basic)', 'Docker'],
   },
   {
     category: 'Databases',
     colorClass: 'text-emerald-600 dark:text-emerald-400',
     bgClass: 'bg-emerald-50 dark:bg-emerald-500/10',
     borderClass: 'border-emerald-200 dark:border-emerald-500/20',
-    items: ['MySQL', 'PostgreSQL', 'MongoDB', 'SQLite'],
+    items: ['SQL Server', 'MySQL', 'PostgreSQL', 'MongoDB', 'SQLite'],
   },
   {
     category: 'Tools',
     colorClass: 'text-orange-600 dark:text-orange-400',
     bgClass: 'bg-orange-50 dark:bg-orange-500/10',
     borderClass: 'border-orange-200 dark:border-orange-500/20',
-    items: ['GitLab', 'SonarQube', 'Datadog', 'ClickUp', 'Cursor IDE'],
-  },
-  {
-    category: 'Concepts',
-    colorClass: 'text-rose-600 dark:text-rose-400',
-    bgClass: 'bg-rose-50 dark:bg-rose-500/10',
-    borderClass: 'border-rose-200 dark:border-rose-500/20',
-    items: ['OOP', 'SOLID Principles', 'Data Structures & Algorithms', 'DBMS', 'Agile / Scrum'],
+    items: ['Git', 'GitLab', 'SonarQube', 'ClickUp', 'ClaudeAI', 'Cursor IDE', 'Datadog'],
   },
 ];
 
@@ -107,9 +107,24 @@ export const projects = [
 export const experience = [
   {
     title: 'Software Engineer',
+    company: 'Outamation Technologies Pvt. Ltd.',
+    location: 'Ahmedabad, Gujarat',
+    period: 'May 2026 – Present',
+    type: 'Full-time',
+    bullets: [
+      'Developed a full-stack Legal Case Management System for VIA, a U.S.-based mortgage technology company, using .NET Core, Angular, SQL Server, and Docker.',
+      'Built a schema-driven dynamic form engine that dynamically adapts UI components and form behavior based on workflow state, enabling configurable case-management processes.',
+      'Implemented a multi-tenant architecture supporting 20+ isolated tenants, enabling tenant-specific configuration and secure data separation.',
+      'Developed a rule-based work queue for automated case assignment and workflow-driven task management, improving operational efficiency.',
+      'Implemented workflow version propagation, reducing manual effort required to apply legal workflow updates by 40%.',
+      'Developed end-to-end features across Angular and .NET Core, building REST APIs, integrating dynamic frontend components, and implementing workflow activities and execution logic.',
+    ],
+  },
+  {
+    title: 'Software Engineer',
     company: 'NSR Information Systems Pvt Ltd',
     location: 'Remote, India',
-    period: 'Aug 2025 – Present',
+    period: 'Aug 2025 – May 2026',
     type: 'Full-time',
     bullets: [
       'Engineered event-driven healthcare integration systems that process 500+ events/day, enabling real-time data synchronization across 15+ Practice Management Systems.',
