@@ -10,7 +10,7 @@ const reduced = () =>
  * Wrap in a parent that has a `perspective`. Falls back to a flat card
  * when the user prefers reduced motion.
  */
-const Tilt3D = ({ children, className = '', max = 9, scale = 1.02, glare = true }) => {
+const Tilt3D = ({ children, className = '', max = 6, scale = 1.015, glare = true }) => {
   const ref = useRef(null);
 
   const onMove = (e) => {

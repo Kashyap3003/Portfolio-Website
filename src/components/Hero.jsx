@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { HiArrowDown, HiDownload } from 'react-icons/hi';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
@@ -5,7 +6,8 @@ import { personal, stats, experience } from '../data/resumeData';
 import Magnetic from './Magnetic';
 import EventStream from './EventStream';
 import Counter from './Counter';
-import Cube3D from './Cube3D';
+
+const HoloCore = lazy(() => import('./HoloCore'));
 
 const lineContainer = {
   hidden: {},
@@ -28,8 +30,8 @@ const Hero = () => {
   // 3D pointer parallax for the hero text block
   const mvX = useMotionValue(0);
   const mvY = useMotionValue(0);
-  const rotateY = useSpring(useTransform(mvX, [-0.5, 0.5], [-9, 9]), SPRING);
-  const rotateX = useSpring(useTransform(mvY, [-0.5, 0.5], [7, -7]), SPRING);
+  const rotateY = useSpring(useTransform(mvX, [-0.5, 0.5], [-5, 5]), SPRING);
+  const rotateX = useSpring(useTransform(mvY, [-0.5, 0.5], [4, -4]), SPRING);
 
   const onPointer = (e) => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -62,9 +64,14 @@ const Hero = () => {
         />
       </div>
 
-      {/* 3D node cube */}
-      <div className="pointer-events-none absolute right-[5%] top-1/2 hidden -translate-y-1/2 animate-float opacity-90 lg:block">
-        <Cube3D size={300} />
+      {/* 3D interactive network — bleeds beyond its box via radial mask */}
+      <div
+        className="pointer-events-none absolute right-[8%] top-1/2 hidden -translate-y-1/2 animate-float lg:block"
+        style={{ overflow: 'visible' }}
+      >
+        <Suspense fallback={<div style={{ width: 260, height: 260 }} />}>
+          <HoloCore size={260} />
+        </Suspense>
       </div>
 
       <div className="section-container relative z-10 w-full py-20" style={{ perspective: 1300 }}>
@@ -92,7 +99,7 @@ const Hero = () => {
               </span>
               Available for opportunities
             </span>
-            <span className="eyebrow hidden sm:block">// {personal.role} · Event-Driven Systems</span>
+              <span className="eyebrow hidden sm:block">// {personal.role} · .NET Full Stack</span>
           </motion.div>
 
           {/* Name — masked line reveal, pushed forward in 3D */}
@@ -202,26 +209,6 @@ const Hero = () => {
           </motion.dl>
         </motion.div>
       </div>
-
-      {/* Scroll hint */}
-      <motion.button
-        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3, duration: 0.6 }}
-        className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted sm:flex"
-        aria-label="Scroll to about"
-        data-cursor="hover"
-      >
-        <span className="mono text-[0.65rem] uppercase tracking-[0.3em]">Scroll</span>
-        <span className="flex h-9 w-5 items-start justify-center rounded-full border-2 border-current p-1">
-          <motion.span
-            animate={{ y: [0, 11, 0] }}
-            transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
-            className="h-1.5 w-1 rounded-full bg-current"
-          />
-        </span>
-      </motion.button>
     </section>
   );
 };

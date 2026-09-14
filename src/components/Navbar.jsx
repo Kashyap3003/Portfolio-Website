@@ -55,7 +55,7 @@ const Navbar = () => {
         <nav
           className={`flex items-center justify-between transition-all duration-300 ${
             scrolled
-              ? 'mt-3 h-14 rounded-2xl border border-hairline bg-[var(--surface)] px-3 backdrop-blur-xl sm:px-4'
+              ? 'mt-3 h-14 rounded-2xl border border-hairline bg-[var(--surface)] px-3 shadow-[0_16px_40px_-20px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:px-4'
               : 'mt-0 h-16 border border-transparent px-0'
           }`}
         >

@@ -10,7 +10,7 @@ const Footer = () => (
 
     <div className="section-container flex flex-col items-center justify-between gap-5 sm:flex-row">
       <p className="mono text-center text-xs text-muted">
-        © {new Date().getFullYear()} Kashyap Ajudiya · Built with React &amp; Tailwind CSS
+        © {new Date().getFullYear()} Built by Kashyap Ajudiya - Engineering full-stack systems that scale, perform and last.
       </p>
 
       <div className="flex items-center gap-2">
